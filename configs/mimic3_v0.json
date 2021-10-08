@@ -25,9 +25,23 @@
   "model_dir": "jax_mimic3_v0",
 
   "train_set": "mimic3.train.index",
+   
+   "val_set": {
+    "pile": "pile.val.index",
+    "owt": "openwebtext2_new_inputs.val.index"
+  },
+
+  "eval_harness_tasks": [
+    "lambada",
+    "piqa",
+    "hellaswag",
+    "winogrande",
+    "mathqa",
+    "pubmedqa"
+  ],
 
   "val_batches": 100,
-  "val_every": 50000,
+  "val_every": 5000000,
   "ckpt_every": 500,
   "keep_every": 10000,
 
