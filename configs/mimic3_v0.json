@@ -1,0 +1,37 @@
+{
+  "layers": 28,
+  "d_model": 4096,
+  "n_heads": 16,
+  "n_vocab": 50400,
+  "norm": "layernorm",
+  "pe": "rotary",
+  "pe_rotary_dims": 64,
+
+  "seq": 2048,
+  "cores_per_replica": 8,
+  "per_replica_batch": 1,
+  "gradient_accumulation_steps": 32,
+
+  "warmup_steps": 128,
+  "anneal_steps": 2100,
+  "lr": 1e-5,
+  "end_lr": 1e-6,
+  "weight_decay": 0.1,
+  "total_steps": 2228,
+
+  "tpu_size": 8,
+
+  "bucket": "mimic3_generative_data",
+  "model_dir": "jax_mimic3_v0",
+
+  "train_set": "mimic3.train.index",
+
+  "val_batches": 100,
+  "val_every": 50000,
+  "ckpt_every": 500,
+  "keep_every": 10000,
+
+  "name": "jax_mimic3_v0",
+  "wandb_project": "jax_mimic3_v0",
+  "comment": ""
+}
