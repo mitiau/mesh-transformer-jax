@@ -151,18 +151,18 @@ if __name__ == "__main__":
 
                 wandb.log({f'val/loss_{name}': float(val_loss)}, step)
 
-            results = evaluator.evaluate(adaptor, eval_task_dict, False, 0, None)
+            #results = evaluator.evaluate(adaptor, eval_task_dict, False, 0, None)
 
-            flat_results = {}
+            #flat_results = {}
 
-            for task_name, task_res in results["results"].items():
-                version = results["versions"][task_name]
-                for metric_name, metric_res in task_res.items():
-                    flat_results[f"{task_name}-v{version}/{metric_name}"] = float(metric_res)
+            #for task_name, task_res in results["results"].items():
+            #    version = results["versions"][task_name]
+            #    for metric_name, metric_res in task_res.items():
+            #        flat_results[f"{task_name}-v{version}/{metric_name}"] = float(metric_res)
 
-            dumped = json.dumps(results, indent=2)
-            print(f"step {step} val results: {dumped}")
-            wandb.log(flat_results, step)
+            #dumped = json.dumps(results, indent=2)
+            #print(f"step {step} val results: {dumped}")
+            #wandb.log(flat_results, step)
         step += 1
 
         pbar.set_postfix({'loss': loss, 'last_loss': last_loss})

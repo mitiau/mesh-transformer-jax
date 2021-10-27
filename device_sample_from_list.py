@@ -84,8 +84,8 @@ if __name__ == "__main__":
         tokenizer = transformers.GPT2TokenizerFast.from_pretrained('gpt2')
         
         import pickle
-        with open(f"gs://{bucket}/orig_codes.pkl", 'rb') as f: 
-            code_contexts = pickle.load(f)[:10000]
+        with open(f"gs://{bucket}/st4_codes.pkl", 'rb') as f: 
+            code_contexts = pickle.load(f)
         
         results = []
         cnt = 0
@@ -101,7 +101,7 @@ if __name__ == "__main__":
             batched_tokens = np.array([padded_tokens] * total_batch)
             length = np.ones(total_batch, dtype=np.uint32) * len(tokens)
 
-            output = network.generate(batched_tokens, length, 3072, {"top_p": np.ones(total_batch) * 0.9,
+            output = network.generate(batched_tokens, length, 2048, {"top_p": np.ones(total_batch) * 0.9,
                                                                     "temp": np.ones(total_batch) * 0.75})
 
             for idx, o in enumerate(output[1][0][:, :, 0]):
@@ -109,12 +109,12 @@ if __name__ == "__main__":
                 results.append(repr(tokenizer.decode(o)))
             
             if cnt%100 == 0:
-                with open(f"gs://{bucket}/generation_results_10000.pkl", 'wb') as f: 
+                with open(f"gs://{bucket}/generation_results_st4_5.pkl", 'wb') as f: 
                     pickle.dump(results, f)               
            
             cnt+=1
 
             print(cnt, f" completion done in {time.time() - start:06}s")
             
-        with open(f"gs://{bucket}/generation_results_10000.pkl", 'wb') as f: 
+        with open(f"gs://{bucket}/generation_results_st4_5.pkl", 'wb') as f: 
             pickle.dump(results, f)

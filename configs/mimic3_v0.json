@@ -13,7 +13,7 @@
   "gradient_accumulation_steps": 32,
 
   "warmup_steps": 128,
-  "anneal_steps": 2100,
+  "anneal_steps": 21000,
   "lr": 1e-5,
   "end_lr": 1e-6,
   "weight_decay": 0.1,
@@ -22,14 +22,11 @@
   "tpu_size": 8,
 
   "bucket": "mimic3_generative_data",
-  "model_dir": "jax_mimic3_v0",
+  "model_dir": "jax_mimic3_v1",
 
   "train_set": "mimic3.train.index",
    
-   "val_set": {
-    "pile": "pile.val.index",
-    "owt": "openwebtext2_new_inputs.val.index"
-  },
+  "val_set": {"mimic3_dev" : "mimic3.val.index"},
 
   "eval_harness_tasks": [
     "lambada",
@@ -40,12 +37,12 @@
     "pubmedqa"
   ],
 
-  "val_batches": 100,
-  "val_every": 5000000,
+  "val_batches": 2715,
+  "val_every": 500,
   "ckpt_every": 500,
   "keep_every": 10000,
 
-  "name": "jax_mimic3_v0",
-  "wandb_project": "jax_mimic3_v0",
+  "name": "jax_mimic3_v2",
+  "wandb_project": "jax_mimic3_v1",
   "comment": ""
 }
